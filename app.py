@@ -1,19 +1,22 @@
 from flask import Flask, jsonify, request
 from api.gemini import generate_questionnaire, generate_story_text
 from api.image_generator import generate_image
+from dotenv import load_dotenv
+import google.generativeai as genai
+import os
 
+load_dotenv()
 app = Flask(__name__)
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 @app.route('/generate_story', methods=['POST'])
 def generate_story():
-    # Retrieve image URL from the request
-    image_url = request.json.get('image_url')
+    image = request.json.get('image')
     prompt = request.json.get('prompt')
 
-    # Implement your logic to generate story text using Gemini Vision models
-    story_text_response = generate_story_text(image_url, prompt)
-
+    story_text_response = generate_story_text(image, prompt)
     return jsonify(story_text_response.__dict__)
 
 
