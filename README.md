@@ -20,8 +20,8 @@ python app.py
 
 (On Windows, use set instead of export.)
 
-## Test
+## Testing
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"prompt": "Write a short accurate story by looking at images carefully and make it a small kids story.", "images":["base64_encoded_image1", "base64_encoded_image2"]}' http://localhost:5000/generate_gemini_text
+python test_requests.py
 ```
