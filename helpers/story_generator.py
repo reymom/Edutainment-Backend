@@ -1,10 +1,11 @@
 from typing import List
-from models.types import StoryTextResponse, QuestionnaireResponse
+from models.types import StoryTextResponse
 
 import google.generativeai as genai
 
 
 def configure_gemini():
+    print("configure_gemini")
     generation_config = {
         "temperature": 0.9,
         "top_p": 1,
@@ -38,8 +39,4 @@ def configure_gemini():
 
 
 def create_story_text_response(story_text: str) -> StoryTextResponse:
-    return StoryTextResponse(text=story_text)
-
-
-def create_questionnaire_response(questionnaire: List[str]) -> QuestionnaireResponse:
-    return QuestionnaireResponse(questionnaire)
+    return StoryTextResponse(story_text=story_text)
